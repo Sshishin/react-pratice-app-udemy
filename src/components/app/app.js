@@ -8,9 +8,9 @@ import EmployeesAddForm from '../employees-add-form/employees-add-form';
 function App() {    //Применили компонент search-panel обервнутый в блок с классом, потому что внутри самого search-panel у нас есть input который краситься через бутстрэп, а через этот класс мы не лезем в совместимость с бутстрэп и спокойно двигаем инпут через родителя
 
     const data = [
-        {name:'Stuart C.', salary:800, increase: true},
-        {name:'Patrick K.', salary:1240, increase: false},
-        {name:'Jonhy M.', salary:1920, increase: true}
+        {name:'Stuart C.', salary:800, increase: true, id:1},
+        {name:'Patrick K.', salary:1240, increase: false, id:2},
+        {name:'Jonhy M.', salary:1920, increase: true, id:3}
     ]
 
     return (

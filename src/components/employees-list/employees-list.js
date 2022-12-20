@@ -3,12 +3,14 @@ import './employees-list.css'
 
 const EmployeesList = ({data}) => {
 
-    const elements = data.map(item => {     //Автоматическое генерация компонентов на основании данных с сервера 
+    const elements = data.map(item => {  //Автоматическое генерация компонентов на основании данных с сервера 
+           const {id, ...itemProps} = item;     //Забираем id из каждого элемента а остальные пропсы деструктуризируем по остатку
         return(
 
             // Передаем сюда элементы списка и генерируем здесь компоненты элементов с подходящими пропсами
-            <EmployeesListItem name={item.name} salary={item.salary} increase={item.increase}/>      //{...item} - аналог
-        ) 
+            // <EmployeesListItem name={item.name} salary={item.salary} increase={item.increase}/>      //{...item} - аналог
+            <EmployeesListItem key={id} {...itemProps}/>  
+            ) 
     })
 
     return (    //Передаем уже общий список список на вызов с атрибутом в котором содержиться база данных
