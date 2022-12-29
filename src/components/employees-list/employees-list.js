@@ -1,7 +1,7 @@
 import EmployeesListItem from "../employees-list-item/employees-list-item"
 import './employees-list.css'
 
-const EmployeesList = ({data}) => {
+const EmployeesList = ({data, onDelete}) => {
 
     const elements = data.map(item => {  //Автоматическое генерация компонентов на основании данных с сервера 
            const {id, ...itemProps} = item;     //Забираем id из каждого элемента а остальные пропсы деструктуризируем по остатку
@@ -9,7 +9,9 @@ const EmployeesList = ({data}) => {
 
             // Передаем сюда элементы списка и генерируем здесь компоненты элементов с подходящими пропсами
             // <EmployeesListItem name={item.name} salary={item.salary} increase={item.increase}/>      //{...item} - аналог
-            <EmployeesListItem key={id} {...itemProps}/>  
+            <EmployeesListItem key={id} 
+            {...itemProps}
+            onDelete={this.deleteItem}/>  
             ) 
     })
 

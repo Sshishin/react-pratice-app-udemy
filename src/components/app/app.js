@@ -1,3 +1,5 @@
+import { Component } from 'react';
+
 import './app.css';
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
@@ -5,27 +7,41 @@ import AppFilter from '../app-filter/app-filter';
 import EmployeesList from '../employees-list/employees-list';
 import EmployeesAddForm from '../employees-add-form/employees-add-form';
 
-function App() {    //Применили компонент search-panel обервнутый в блок с классом, потому что внутри самого search-panel у нас есть input который краситься через бутстрэп, а через этот класс мы не лезем в совместимость с бутстрэп и спокойно двигаем инпут через родителя
+class App extends Component {    //Применили компонент search-panel обервнутый в блок с классом, потому что внутри самого search-panel у нас есть input который краситься через бутстрэп, а через этот класс мы не лезем в совместимость с бутстрэп и спокойно двигаем инпут через родителя
+    constructor(props) {
+        super(props)
 
-    const data = [
-        {name:'Stuart C.', salary:800, increase: true, id:1},
-        {name:'Patrick K.', salary:1240, increase: false, id:2},
-        {name:'Jonhy M.', salary:1920, increase: true, id:3}
-    ]
+        this.state = {
+            data: [
+                {name:'Stuart C.', salary:800, increase: true, id:1},
+                {name:'Patrick K.', salary:1240, increase: false, id:2},
+                {name:'Jonhy M.', salary:1920, increase: true, id:3}
+            ]
+        }
+    }
 
-    return (
-        <div className="app">
-           <AppInfo/>
+    deleteItem = (id) => {
+        console.log(id)
+    }
 
-           <div className="search-panel">
-                <SearchPanel/>
-                <AppFilter/>
-            </div> 
-
-            <EmployeesList data={data}/>
-            <EmployeesAddForm/>
-        </div>
-    );
+    render() {
+        return (
+            <div className="app">
+               <AppInfo/>
+    
+               <div className="search-panel">
+                    <SearchPanel/>
+                    <AppFilter/>
+                </div> 
+    
+                <EmployeesList 
+                data={this.state.data}
+                onDelete={id => console.log(id)}
+                />
+                <EmployeesAddForm/>
+            </div>
+        );
+    }
 }
 
 export default App;
