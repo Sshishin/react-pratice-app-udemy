@@ -21,7 +21,11 @@ class App extends Component {    //Применили компонент search-
     }
 
     deleteItem = (id) => {
-        console.log(id)
+        this.setState(({data}) => {
+            return  {
+                data: data.filter(item => item.id !== id)
+            }
+        })
     }
 
     render() {
@@ -36,7 +40,7 @@ class App extends Component {    //Применили компонент search-
     
                 <EmployeesList 
                 data={this.state.data}
-                onDelete={id => console.log(id)}
+                onDelete={this.deleteItem}
                 />
                 <EmployeesAddForm/>
             </div>
